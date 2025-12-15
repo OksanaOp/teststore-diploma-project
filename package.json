@@ -1,0 +1,22 @@
+{
+  "name": "teststore-diploma-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OksanaOp/teststore-diploma-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/OksanaOp/teststore-diploma-project/issues"
+  },
+  "homepage": "https://github.com/OksanaOp/teststore-diploma-project#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.2"
+  }
+}
