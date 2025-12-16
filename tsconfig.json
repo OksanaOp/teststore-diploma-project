@@ -1,6 +1,9 @@
 {
   "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
+    // alias - це швидкий доступ до будь якої папки
     "paths": {
       "@/*": ["./*"]
     }
