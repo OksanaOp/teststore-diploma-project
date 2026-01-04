@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "npx playwright test",
+    "test:report": "npx playwright show-report"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/OksanaOp/teststore-diploma-project.git"
@@ -17,9 +20,7 @@
   "homepage": "https://github.com/OksanaOp/teststore-diploma-project#readme",
   "devDependencies": {
     "@playwright/test": "^1.57.0",
-    "@types/node": "^25.0.2"
-  },
-  "dependencies": {
+    "@types/node": "^25.0.2",
     "dotenv": "^17.2.3"
   }
 }
