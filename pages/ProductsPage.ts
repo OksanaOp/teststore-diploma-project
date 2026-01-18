@@ -1,7 +1,7 @@
 import { Page } from "@playwright/test";
 import { ProductCardComponent } from "@/components/ProductCardComponent/ProductCardComponent";
 import BasePage from "./BasePage";
-import { QuickViewModal } from "@/components/QuickViewModal/QuickViewModal";
+import { QuickViewModal } from "@/components/QuickViewModalComponent/QuickViewModalComponent";
 
 export class ProductsPage extends BasePage {
   quickViewModal = new QuickViewModal(
