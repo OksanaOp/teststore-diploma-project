@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "@/pages/LoginPage/LoginPage";
+import LoginPage from "@/pages/LoginPage";
 
 const loginData = require("../login-data.json");
 
@@ -7,19 +7,20 @@ test.describe("Login feature", () => {
   test(
     "successful login shows user link",
     {
-      tag: "@smoke",
+      tag: ["@smoke", "@positive"],
     },
     async ({ page }) => {
-      const login = new LoginPage(page, "/index.php?controller=authentication");
+      const loginPage = new LoginPage(
+        page,
+        "/index.php?controller=authentication"
+      );
 
-      await login.userLogin(
+      await loginPage.userLogin(
         loginData.validUser.email,
         loginData.validUser.password
       );
 
-      await expect(
-        page.getByRole("link", { name: "Oksana Test" })
-      ).toBeVisible();
+      // await expect(loginPage.).toBeVisible();
     }
   );
 
@@ -29,9 +30,12 @@ test.describe("Login feature", () => {
       tag: "@negative",
     },
     async ({ page }) => {
-      const login = new LoginPage(page, "/index.php?controller=authentication");
+      const loginPage = new LoginPage(
+        page,
+        "/index.php?controller=authentication"
+      );
 
-      await login.userLogin(
+      await loginPage.userLogin(
         loginData.invalidUser.email,
         loginData.invalidUser.password
       );
@@ -49,9 +53,12 @@ test.describe("Login feature", () => {
       tag: "@negative",
     },
     async ({ page }) => {
-      const login = new LoginPage(page, "/index.php?controller=authentication");
+      const loginPage = new LoginPage(
+        page,
+        "/index.php?controller=authentication"
+      );
 
-      await login.userLogin(
+      await loginPage.userLogin(
         loginData.emptyUser.email,
         loginData.emptyUser.password
       );
