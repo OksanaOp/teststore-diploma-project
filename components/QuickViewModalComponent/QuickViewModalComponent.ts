@@ -1,10 +1,8 @@
-import { BaseComponent } from "../BaseComponent";
-import { QuickViewModalLocators } from "./QuickViewModalComponentLocators";
+import { BaseComponent } from '../BaseComponent';
+import { QuickViewModalLocators } from './QuickViewModalComponentLocators';
 
 export class QuickViewModal extends BaseComponent {
-  locators: QuickViewModalLocators = new QuickViewModalLocators(
-    this.baseLocator,
-  );
+  locators: QuickViewModalLocators = new QuickViewModalLocators(this.baseLocator);
 
   async checkTitleForQuickModal() {
     await this.locators.modalTitle;

@@ -1,6 +1,5 @@
-import { Locator } from "@playwright/test";
-import { BaseComponent } from "../BaseComponent";
-import { CartModalLocators } from "./CartModalComponentLocators";
+import { BaseComponent } from '../BaseComponent';
+import { CartModalLocators } from './CartModalComponentLocators';
 
 export class CartModal extends BaseComponent {
   locators: CartModalLocators = new CartModalLocators(this.baseLocator);

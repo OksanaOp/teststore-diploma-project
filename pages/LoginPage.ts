@@ -1,10 +1,8 @@
-import BasePage from "./BasePage";
-import { LoginPageLocators } from "../locators/LoginPageLocators";
+import BasePage from './BasePage';
+import { LoginPageLocators } from '../locators/LoginPageLocators';
 
 class LoginPage extends BasePage {
-  readonly locators: LoginPageLocators = new LoginPageLocators(
-    this.page.locator("body")
-  );
+  readonly locators: LoginPageLocators = new LoginPageLocators(this.page.locator('body'));
 
   async fillEmail(email: string) {
     await this.locators.emailInputLocator.fill(email);
@@ -17,7 +15,7 @@ class LoginPage extends BasePage {
   }
 
   async userLogin(email: string, password: string) {
-    await this.navigateToPage();
+    await this.goToPage();
     await this.fillEmail(email);
     await this.fillPassword(password);
     await this.clickSignInButton();

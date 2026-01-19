@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test';
 
 abstract class BasePage {
   protected page: Page;
@@ -9,7 +9,7 @@ abstract class BasePage {
     this.controllerPath = controllerPath;
   }
 
-  async navigateToPage() {
+  async goToPage() {
     await this.page.goto(this.controllerPath);
   }
 }

@@ -1,12 +1,11 @@
-import { BaseLocators } from "@/locators/BaseLocators";
-import { Locator } from "@playwright/test";
+import { BaseLocators } from '@/locators/BaseLocators';
 
 export class ProductCardLocators extends BaseLocators {
-  favoriteProductButtonLocator = this.baseLocator.getByRole("button", {
-    name: "favorite_border",
+  favoriteProductButtonLocator = this.baseLocator.getByRole('button', {
+    name: 'favorite_border',
   });
 
-  quickViewButtonLocator = this.baseLocator.getByRole("link", {
-    name: "Quick View",
+  quickViewButtonLocator = this.baseLocator.getByRole('link', {
+    name: 'Quick View',
   });
 }

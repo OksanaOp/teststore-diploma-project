@@ -1,12 +1,11 @@
-import { Locator } from "@playwright/test";
-import { BaseComponent } from "../BaseComponent";
-import { ProductCardLocators } from "./ProductCardComponentLocators";
+import { BaseComponent } from '../BaseComponent';
+import { ProductCardLocators } from './ProductCardComponentLocators';
 
 export class ProductCardComponent extends BaseComponent {
   locators: ProductCardLocators = new ProductCardLocators(this.baseLocator);
 
   async isVisible() {
-    await this.baseLocator.waitFor({ state: "visible" });
+    await this.baseLocator.waitFor({ state: 'visible' });
   }
 
   async gotToCard() {
