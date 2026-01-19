@@ -1,12 +1,13 @@
-import { Page } from "@playwright/test";
 import { ProductCardComponent } from "@/components/ProductCardComponent/ProductCardComponent";
 import BasePage from "./BasePage";
 import { QuickViewModal } from "@/components/QuickViewModalComponent/QuickViewModalComponent";
+import { CartModal } from "@/components/CartModalComponent/CartModalComponent";
 
 export class ProductsPage extends BasePage {
   quickViewModal = new QuickViewModal(
-    this.page.locator('[class="modal-dialog modal-dialog-centered"]')
+    this.page.locator('[class="modal-dialog modal-dialog-centered"]'),
   );
+  cartModal = new CartModal(this.page.locator('[class="modal-dialog"]'));
 
   getProductCardByText(productName: string) {
     const baseLocator = this.page
