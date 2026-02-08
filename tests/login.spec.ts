@@ -12,11 +12,13 @@ test.describe('Login feature', () => {
     },
     async ({ page }) => {
       const loginPage = new LoginPage(page, '/index.php?controller=authentication');
-      const headerComponent = new HeaderComponent(page.locator('body'));
+      const headerComponent = new HeaderComponent(page.locator('[id="header"]'));
       await loginPage.userLogin(loginData.validUser.email, loginData.validUser.password);
 
       await expect(page).toHaveURL('/index.php');
-      await expect(headerComponent.userIsLoggedIn).toBeTruthy();
+      await expect(headerComponent.locators.userAccountLinkLocator).toBeVisible();
+      await headerComponent.logOut();
+      await expect(headerComponent.locators.userAccountLinkLocator).toBeHidden();
     }
   );
 

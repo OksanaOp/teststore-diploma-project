@@ -16,5 +16,5 @@ export class HeaderLocators extends BaseLocators {
 
   readonly cartProductsCount: Locator = this.baseLocator.locator('[class="cart-products-count"]');
 
-  readonly userAccountLnkLocator: Locator = this.baseLocator.locator('[class="account"]');
+  readonly userAccountLinkLocator: Locator = this.baseLocator.locator('[class="account"]');
 }
