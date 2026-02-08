@@ -9,9 +9,12 @@ export class HeaderLocators extends BaseLocators {
   readonly signInLocator: Locator = this.baseLocator.getByRole('link', {
     name: 'Sign in',
   });
+
   readonly cartButtonLocator: Locator = this.baseLocator.getByRole('link', {
     name: 'Shopping cart link containing',
   });
+
+  readonly cartProductsCount: Locator = this.baseLocator.locator('[class="cart-products-count"]');
 
   readonly userAccountLnkLocator: Locator = this.baseLocator.locator('[class="account"]');
 }
