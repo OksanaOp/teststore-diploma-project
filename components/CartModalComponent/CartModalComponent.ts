@@ -4,10 +4,6 @@ import { CartModalLocators } from './CartModalComponentLocators';
 export class CartModal extends BaseComponent {
   locators: CartModalLocators = new CartModalLocators(this.baseLocator);
 
-  async checkTitleForCartModal() {
-    await this.locators.cartModalTitle;
-  }
-
   async continueShopping() {
     await this.locators.continueShoppingButtonLocator.click();
   }
