@@ -13,6 +13,8 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
+    env:
+      PW_BASE_URL: https://teststore.automationtesting.co.uk/index.php
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
