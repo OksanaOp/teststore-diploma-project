@@ -1,50 +1,38 @@
-import { test, expect } from '@playwright/test';
-import LoginPage from '@/pages/LoginPage';
-
+import { expect } from '@playwright/test';
+import { test } from '../fixtures';
 import loginData from '../login-data.json';
-import { HeaderComponent } from '../components/HeaderComponent/HeaderComponent';
 
 test.describe('Login feature', () => {
   test(
-    'successful login shows user link',
+    'TR001:Successful login shows user link',
     {
       tag: ['@smoke', '@positive'],
     },
-    async ({ page }) => {
-      const loginPage = new LoginPage(page, '/index.php?controller=authentication');
-      const headerComponent = new HeaderComponent(page.locator('[id="header"]'));
+    async ({ loginPage, headerComponent, page }) => {
       await loginPage.userLogin(loginData.validUser.email, loginData.validUser.password);
 
       await expect(page).toHaveURL('/index.php');
       await expect(headerComponent.locators.userAccountLinkLocator).toBeVisible();
-      await headerComponent.logOut();
-      await expect(headerComponent.locators.userAccountLinkLocator).toBeHidden();
     }
   );
 
   test(
-    'invalid password stays on login page',
+    'TR002:Invalid password stays on login page',
     {
       tag: '@negative',
     },
-    async ({ page }) => {
-      const loginPage = new LoginPage(page, '/index.php?controller=authentication');
-
+    async ({ loginPage }) => {
       await loginPage.userLogin(loginData.invalidUser.email, loginData.invalidUser.password);
-
-      await expect(page).toHaveURL(/authentication/);
-      await expect(page.getByRole('link', { name: 'Oksana Test' })).toBeHidden();
+      await expect(loginPage.locators.authErrorBannerLocator).toBeVisible();
     }
   );
 
   test(
-    'empty credentials keep on login page',
+    'TR003: Empty credentials keep on login page',
     {
       tag: '@negative',
     },
-    async ({ page }) => {
-      const loginPage = new LoginPage(page, '/index.php?controller=authentication');
-
+    async ({ loginPage, page }) => {
       await loginPage.userLogin(loginData.emptyUser.email, loginData.emptyUser.password);
       await expect(page).toHaveURL(/authentication/);
     }

@@ -9,8 +9,9 @@ abstract class BasePage {
     this.controllerPath = controllerPath;
   }
 
-  async goToPage() {
-    await this.page.goto(this.controllerPath);
+  // path - to use dynamic navigation
+  async goToPage(path?: string) {
+    await this.page.goto(path || this.controllerPath);
   }
 }
 

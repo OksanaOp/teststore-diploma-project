@@ -1,23 +1,19 @@
-import { test, expect } from '@playwright/test';
-import LoginPage from '@/pages/LoginPage';
-import { ProductsPage } from '@/pages/ProductsPage';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures';
 
 import loginData from '../login-data.json';
 
 test.describe('Tests for adding products', () => {
-  test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page, '/index.php?controller=authentication');
+  test.beforeEach(async ({ loginPage }) => {
     await loginPage.userLogin(loginData.validUser.email, loginData.validUser.password);
   });
 
   test(
-    'Check that cart modal is opened when add the product via quick view modal',
+    'TR004: Check that cart modal is opened when add the product via quick view modal',
     {
       tag: '@positive',
     },
-    async ({ page }) => {
-      const productsPage = new ProductsPage(page, '/index.php?id_category=8&controller=category');
-
+    async ({ productsPage }) => {
       await productsPage.goToPage();
       await productsPage.openCardQuickViewModal('Mug The best is yet to come');
 
@@ -30,13 +26,11 @@ test.describe('Tests for adding products', () => {
   );
 
   test(
-    'Change the quantity on the quick modal and navigate to cart Page via cart modal',
+    'TR005: Change the quantity on the quick modal and navigate to cart Page via cart modal',
     {
       tag: '@positive',
     },
-    async ({ page }) => {
-      const productsPage = new ProductsPage(page, '/index.php?id_category=8&controller=category');
-
+    async ({ productsPage, page }) => {
       await productsPage.goToPage();
       await productsPage.openCardQuickViewModal('Mug The best is yet to come');
       await productsPage.quickViewModal.increaseQuantityOfProduct();
@@ -48,4 +42,31 @@ test.describe('Tests for adding products', () => {
       await expect(page).toHaveURL(/controller=cart/);
     }
   );
+});
+
+const testParams = [
+  {
+    url: '/index.php?id_category=4&controller=category',
+    productNames: ['Hummingbird printed t-shirt'],
+  },
+  {
+    url: '/index.php?id_category=7&controller=category',
+    productNames: ['Brown bear notebook', 'Mountain fox notebook'],
+  },
+];
+
+testParams.forEach(({ url, productNames }) => {
+  test(`test for page by url ${url}`, async ({ productsPage, headerComponent }) => {
+    await productsPage.goToPage(url);
+
+    for (let j = 0; j < productNames.length; j++) {
+      const productName = productNames[j];
+      await productsPage.openCardQuickViewModal(productName);
+      await productsPage.quickViewModal.addProductToCart();
+      await expect(productsPage.cartModal.locators.cartModalTitle).toBeVisible();
+      await productsPage.cartModal.closeModal();
+      await expect(productsPage.cartModal.locators.cartModalTitle).toBeHidden();
+      await expect(headerComponent.locators.cartButtonLocator).toContainText(`(${j + 1})`);
+    }
+  });
 });

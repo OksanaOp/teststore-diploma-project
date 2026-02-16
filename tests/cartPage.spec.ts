@@ -1,32 +1,51 @@
-import { test, expect } from '@playwright/test';
-import { CartPage } from '../pages/CartPage';
-import { ProductsPage } from '../pages/ProductsPage';
+import { expect } from '@playwright/test';
+import { test } from '../fixtures';
+
+import loginData from '../login-data.json';
 
 test.describe('Cart page feature', () => {
-  test.beforeEach(async ({ page }) => {
-    const productsPage = new ProductsPage(page, '/index.php?id_category=8&controller=category');
-
+  test.beforeEach(async ({ productsPage }) => {
     await productsPage.goToPage();
     await productsPage.openCardQuickViewModal('Mug The best is yet to come');
-
     await expect(productsPage.quickViewModal.locators.modalTitle).toBeVisible();
-
     await productsPage.quickViewModal.addProductToCart();
-
     await expect(productsPage.cartModal.locators.cartModalTitle).toBeVisible();
   });
 
   test(
-    'Delete product from the cart and check that empty cart is visible',
+    'TR006: Delete product from the cart via delete icon and check that empty cart is visible',
     {
       tag: '@positive',
     },
-    async ({ page }) => {
-      const cartPage = new CartPage(page, '/index.php?controller=cart&action=show');
+    async ({ cartPage }) => {
       await cartPage.goToPage();
-
       await cartPage.deleteProduct();
-      await expect(cartPage.emptyCart).toBeVisible();
+      await expect(cartPage.locators.emptyCartLocator).toBeVisible();
+    }
+  );
+
+  test(
+    'TR007: Delete product from the cart via delete [-] icon and check that for the empty cart [Proceed to checkout] button is disabled',
+    {
+      tag: '@positive',
+    },
+    async ({ cartPage }) => {
+      await cartPage.goToPage();
+      await cartPage.deleteProductViaArrowDownIcon();
+      await expect(cartPage.locators.emptyCartLocator).toBeVisible();
+      await expect(cartPage.locators.disabledProceedToCheckoutButtonLocator).toBeDisabled();
+    }
+  );
+
+  test(
+    'TR008: Navigate to the checkout page and check that URL is correct',
+    {
+      tag: '@positive',
+    },
+    async ({ cartPage, page }) => {
+      await cartPage.goToPage();
+      await cartPage.proceedToCheckout();
+      await expect(page).toHaveURL(/controller=order/);
     }
   );
 });
