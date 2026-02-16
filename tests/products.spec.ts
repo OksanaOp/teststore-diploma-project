@@ -55,8 +55,8 @@ const testParams = [
   },
 ];
 
-testParams.forEach(({ url, productNames }) => {
-  test(`test for page by url ${url}`, async ({ productsPage, headerComponent }) => {
+testParams.forEach(({ url, productNames }, index) => {
+  test(`TR006: test for page by url ${url}`, async ({ productsPage, headerComponent }) => {
     await productsPage.goToPage(url);
 
     for (let j = 0; j < productNames.length; j++) {

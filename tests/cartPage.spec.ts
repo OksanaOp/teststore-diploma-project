@@ -11,7 +11,7 @@ test.describe('Cart page feature', () => {
   });
 
   test(
-    'TR006: Delete product from the cart via delete icon and check that empty cart is visible',
+    'TR007: Delete product from the cart via delete icon and check that empty cart is visible',
     {
       tag: '@positive',
     },
@@ -23,7 +23,7 @@ test.describe('Cart page feature', () => {
   );
 
   test(
-    'TR007: Delete product from the cart via delete [-] icon and check that for the empty cart [Proceed to checkout] button is disabled',
+    'TR008: Delete product from the cart via delete [-] icon and check that for the empty cart [Proceed to checkout] button is disabled',
     {
       tag: '@positive',
     },
@@ -36,7 +36,7 @@ test.describe('Cart page feature', () => {
   );
 
   test(
-    'TR008: Navigate to the checkout page and check that URL is correct',
+    'TR009: Navigate to the checkout page and check that URL is correct',
     {
       tag: '@positive',
     },
