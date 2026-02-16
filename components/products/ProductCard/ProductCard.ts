@@ -1,7 +1,7 @@
-import { BaseComponent } from '../BaseComponent';
-import { ProductCardLocators } from './ProductCardComponentLocators';
+import { BaseComponent } from '../../BaseComponent';
+import { ProductCardLocators } from './ProductCardLocators';
 
-export class ProductCardComponent extends BaseComponent {
+export class ProductCard extends BaseComponent {
   locators: ProductCardLocators = new ProductCardLocators(this.baseLocator);
 
   async isVisible() {

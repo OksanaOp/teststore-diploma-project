@@ -1,5 +1,5 @@
-import { BaseComponent } from '../BaseComponent';
-import { QuickViewModalLocators } from './QuickViewModalComponentLocators';
+import { BaseComponent } from '../../BaseComponent';
+import { QuickViewModalLocators } from './QuickViewModalLocators';
 
 export class QuickViewModal extends BaseComponent {
   locators: QuickViewModalLocators = new QuickViewModalLocators(this.baseLocator);

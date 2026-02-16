@@ -1,7 +1,7 @@
-import { ProductCardComponent } from '@/components/ProductCardComponent/ProductCardComponent';
-import BasePage from './BasePage';
-import { QuickViewModal } from '@/components/QuickViewModalComponent/QuickViewModalComponent';
+import ProductCard from '@/components/products/ProductCard';
+import QuickViewModal from '@/components/products/QuickViewModal';
 import { CartModal } from '../components/CartModalComponent/CartModalComponent';
+import BasePage from './BasePage';
 
 const quickViewModalIdPart = 'quickview-modal-';
 
@@ -14,7 +14,7 @@ export class ProductsPage extends BasePage {
       .locator('article.product-miniature')
       .filter({ hasText: productName });
 
-    return new ProductCardComponent(baseLocator);
+    return new ProductCard(baseLocator);
   }
 
   async openCardQuickViewModal(productName: string) {
