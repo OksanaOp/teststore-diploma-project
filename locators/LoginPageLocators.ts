@@ -11,4 +11,8 @@ export class LoginPageLocators extends BaseLocators {
   readonly signInButtonLocator: Locator = this.baseLocator.getByRole('button', {
     name: 'Sign in',
   });
+
+  readonly authErrorBannerLocator: Locator = this.baseLocator.locator(
+    '[class="alert alert-danger"]'
+  );
 }

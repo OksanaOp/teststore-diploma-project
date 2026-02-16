@@ -1,7 +1,7 @@
 import { Locator } from '@playwright/test';
-import { BaseLocators } from '../../locators/BaseLocators';
+import { BaseLocators } from '../../../locators/BaseLocators';
 
-export class ShippingMethodCheckoutLocators extends BaseLocators {
+export class ShippingMethodStepLocators extends BaseLocators {
   readonly pickUpInStoreOptionLocator: Locator = this.baseLocator.getByRole('radio', {
     name: 'Click and collect Pick up in-store Free',
   });

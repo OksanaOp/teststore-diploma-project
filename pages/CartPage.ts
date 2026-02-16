@@ -7,11 +7,28 @@ export class CartPage extends BasePage {
   async deleteProduct() {
     await this.locators.deleteButtonLocator.click();
   }
-
   async continueShopping() {
     await this.locators.continueShoppingButtonLocator.click();
   }
-
-  // Expose the empty cart locator so tests can assert visibility directly
-  readonly emptyCart = this.locators.emptyCartLocator;
+  async proceedToCheckout() {
+    await this.locators.proceedToCheckoutButtonLocator.click();
+  }
+  async getProductName() {
+    return await this.locators.productNameLocator.textContent();
+  }
+  async getProductPrice() {
+    return await this.locators.productPriceLocator.textContent();
+  }
+  async getProductQuantity() {
+    return await this.locators.productQuantityLocator.inputValue();
+  }
+  async getProductTotalPrice() {
+    return await this.locators.productTotalPriceLocator.textContent();
+  }
+  async getCartTotalPrice() {
+    return await this.locators.cartTotalPriceLocator.textContent();
+  }
+  async deleteProductViaArrowDownIcon() {
+    await this.locators.deleteViaArrowDownIconLocator.click();
+  }
 }

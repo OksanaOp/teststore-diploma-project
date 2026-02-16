@@ -1,8 +1,8 @@
-import { BaseComponent } from '../BaseComponent';
-import { ShippingMethodCheckoutLocators } from './ShippingMethodCheckoutLocators';
+import { BaseComponent } from '../../BaseComponent';
+import { ShippingMethodStepLocators } from './ShippingMethodLocators';
 
-export class ShippingMethodCheckoutStepComponent extends BaseComponent {
-  locator: ShippingMethodCheckoutLocators = new ShippingMethodCheckoutLocators(this.baseLocator);
+export class ShippingMethodStep extends BaseComponent {
+  locator: ShippingMethodStepLocators = new ShippingMethodStepLocators(this.baseLocator);
 
   async pickUpInStoreOptionSelection() {
     await this.locator.pickUpInStoreOptionLocator.click();

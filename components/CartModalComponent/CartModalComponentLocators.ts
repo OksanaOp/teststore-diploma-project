@@ -16,8 +16,4 @@ export class CartModalLocators extends BaseLocators {
   closeCartModalButton = this.baseLocator.getByRole('button', {
     name: 'Close',
   });
-
-  // productNameLocator = this.baseLocator
-  //   .getByLabel("Product successfully added")
-  //   .getByRole("heading", { name:  });
 }

@@ -1,7 +1,7 @@
 import { Locator } from '@playwright/test';
-import { BaseLocators } from '../../locators/BaseLocators';
+import { BaseLocators } from '../../../locators/BaseLocators';
 
-export class AddressStepCheckoutLocators extends BaseLocators {
+export class AddressStepLocators extends BaseLocators {
   readonly firstNameInputLocator: Locator = this.baseLocator.getByRole('textbox', {
     name: 'First name',
   });
@@ -12,6 +12,7 @@ export class AddressStepCheckoutLocators extends BaseLocators {
 
   readonly addressInputLocator: Locator = this.baseLocator.getByRole('textbox', {
     name: 'Address',
+    exact: true,
   });
 
   readonly cityInputLocator: Locator = this.baseLocator.getByRole('textbox', {
@@ -26,7 +27,7 @@ export class AddressStepCheckoutLocators extends BaseLocators {
     name: 'Alabama',
   });
 
-  readonly zipCodeInputLocator: Locator = this.baseLocator.getByRole('option', {
+  readonly zipCodeInputLocator: Locator = this.baseLocator.getByRole('textbox', {
     name: 'Zip/Postal Code',
   });
 
@@ -34,11 +35,21 @@ export class AddressStepCheckoutLocators extends BaseLocators {
     name: 'Country',
   });
 
-  readonly countryFranceOptionLocator: Locator = this.baseLocator.getByRole('option', {
-    name: 'France',
-  });
+  readonly getOptionLocator = (countryName: string): Locator =>
+    this.baseLocator.getByRole('option', {
+      name: countryName,
+    });
 
   readonly continueButtonLocator: Locator = this.baseLocator.getByRole('button', {
     name: 'CONTINUE',
   });
+
+  readonly addNewAddressButtonLocator: Locator = this.baseLocator.getByRole('link', {
+    name: 'add new address',
+  });
+
+  readonly getExistingAddressLocator = (addressPart: string): Locator =>
+    this.baseLocator.locator('input[type="radio"][id*="id_address_delivery-address"]').filter({
+      hasText: addressPart,
+    });
 }

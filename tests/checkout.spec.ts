@@ -1,0 +1,59 @@
+import { expect } from '@playwright/test';
+import { faker } from '@faker-js/faker';
+
+import { test } from '../fixtures';
+
+const fakeMail = faker.internet.email();
+
+const personalData = {
+  firstName: 'John',
+  lastName: 'Doe',
+  email: fakeMail,
+};
+
+const baseAddressData = {
+  city: 'Los Angeles',
+  zipCode: '90001',
+  address: '123 Main St',
+  country: 'United States',
+  state: 'Alabama',
+};
+
+test.describe('Tests for checkout page', () => {
+  test.beforeEach(async ({ productsPage }) => {
+    await productsPage.goToPage();
+    await productsPage.openCardQuickViewModal('Mug The best is yet to come');
+
+    await expect(productsPage.quickViewModal.locators.modalTitle).toBeVisible();
+
+    await productsPage.quickViewModal.addProductToCart();
+
+    await expect(productsPage.cartModal.locators.cartModalTitle).toBeVisible();
+  });
+
+  test('TR009: CHECKOUT as a guest', async ({ checkoutPage, cartPage }) => {
+    await cartPage.goToPage();
+    await cartPage.proceedToCheckout();
+
+    // step 1
+    await expect(checkoutPage.locators.personalInfoSection).toContainClass('js-current-step');
+    await checkoutPage.fillPersonalInfoForm(personalData);
+    await checkoutPage.personalInformation.continueButtonClick();
+    // step 2
+    await expect(checkoutPage.locators.addressSection).toContainClass('js-current-step');
+    await checkoutPage.fillAddressForm(baseAddressData);
+    await checkoutPage.addressStep.continueButtonClick();
+    // step 3
+    await expect(checkoutPage.locators.shippingMethodSection).toContainClass('js-current-step');
+    await checkoutPage.shippingMethodStep.continueButtonClick();
+    // step4
+    await expect(checkoutPage.locators.paymentSection).toContainClass('js-current-step');
+    // await expect(checkoutPage.paymentMethodStep.locator.errorMessageLocator).toHaveText(
+    //   'Unfortunately, there is no payment method available.'
+    // );
+    await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeDisabled();
+    await checkoutPage.paymentMethodStep.selectPaymentMethod('1');
+    await checkoutPage.paymentMethodStep.acceptTermsAndConditions();
+    await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeEnabled();
+  });
+});
