@@ -49,7 +49,7 @@ export class AddressStepLocators extends BaseLocators {
   });
 
   readonly getExistingAddressLocator = (addressPart: string): Locator =>
-    this.baseLocator.locator('input[type="radio"][id*="id_address_delivery-address"]').filter({
+    this.baseLocator.locator('article[id*="id_address_delivery-address"]').filter({
       hasText: addressPart,
     });
 }
