@@ -23,4 +23,19 @@ export class PersonalInformationStep extends BaseComponent {
   async continueButtonClick() {
     await this.locator.continueButtonLocator.click();
   }
+
+  async selectSignInTab() {
+    await this.locator.signInTabLocator.click();
+  }
+
+  // login tab
+  async fillLoginEmail(email: string) {
+    await this.locator.loginEmailInputLocator.fill(email);
+  }
+  async fillLoginPassword(password: string) {
+    await this.locator.passwordInputLocator.fill(password);
+  }
+  async clickLoginToContinue() {
+    await this.locator.continueLoginForm.click();
+  }
 }

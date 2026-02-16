@@ -25,4 +25,17 @@ export class PersonalInformationStepLocators extends BaseLocators {
   readonly orderAsGuestTabLocator: Locator = this.baseLocator.getByRole('tab', {
     name: 'Order as a guest',
   });
+
+  readonly signInTabLocator: Locator = this.baseLocator.getByRole('tab', { name: 'Sign in' });
+
+  readonly loginEmailInputLocator: Locator = this.baseLocator
+    .locator('#checkout-login-form')
+    .locator('#field-email');
+  readonly passwordInputLocator: Locator = this.baseLocator
+    .locator('#checkout-login-form')
+    .locator('#field-password');
+
+  readonly continueLoginForm: Locator = this.baseLocator
+    .locator('#login-form')
+    .getByText('Continue');
 }

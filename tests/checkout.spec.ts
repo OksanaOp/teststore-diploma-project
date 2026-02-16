@@ -35,7 +35,7 @@ test.describe('Tests for checkout page', () => {
     await expect(productsPage.cartModal.locators.cartModalTitle).toBeVisible();
   });
 
-  test('TR0009: Checkout user with existing address', async ({
+  test('TR0009: Checkout existing user with existing address', async ({
     checkoutPage,
     loginPage,
     cartPage,
@@ -47,7 +47,6 @@ test.describe('Tests for checkout page', () => {
     // step 2
     await expect(checkoutPage.locators.addressSection).toContainClass('js-current-step');
     await checkoutPage.addressStep.selectExistingAddress(existedAddressCountry);
-    // await checkoutPage.fillAddressForm(baseAddressData);
     await checkoutPage.addressStep.continueButtonClick();
     // step 3
     await expect(checkoutPage.locators.shippingMethodSection).toContainClass('js-current-step');
@@ -80,6 +79,29 @@ test.describe('Tests for checkout page', () => {
     // await expect(checkoutPage.paymentMethodStep.locator.errorMessageLocator).toHaveText(
     //   'Unfortunately, there is no payment method available.'
     // );
+    await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeDisabled();
+    await checkoutPage.paymentMethodStep.selectPaymentMethod('1');
+    await checkoutPage.paymentMethodStep.acceptTermsAndConditions();
+    await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeEnabled();
+  });
+
+  test('TR0011: existing', async ({ checkoutPage, cartPage }) => {
+    await cartPage.goToPage();
+    await cartPage.proceedToCheckout();
+
+    // step 1
+    await expect(checkoutPage.locators.personalInfoSection).toContainClass('js-current-step');
+    await checkoutPage.loginFromPersonalInfo(loginData.validUser);
+    await checkoutPage.personalInformation.clickLoginToContinue();
+    // step 2
+    await expect(checkoutPage.locators.addressSection).toContainClass('js-current-step');
+    await checkoutPage.addressStep.selectExistingAddress(existedAddressCountry);
+    await checkoutPage.addressStep.continueButtonClick();
+    // step 3
+    await expect(checkoutPage.locators.shippingMethodSection).toContainClass('js-current-step');
+    await checkoutPage.shippingMethodStep.continueButtonClick();
+    // step4
+    await expect(checkoutPage.locators.paymentSection).toContainClass('js-current-step');
     await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeDisabled();
     await checkoutPage.paymentMethodStep.selectPaymentMethod('1');
     await checkoutPage.paymentMethodStep.acceptTermsAndConditions();

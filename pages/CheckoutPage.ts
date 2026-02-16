@@ -60,4 +60,10 @@ export class CheckoutPage extends BasePage {
       await this.addressStep.selectState(data.state);
     }
   }
+
+  async loginFromPersonalInfo(data: Record<string, string>) {
+    await this.personalInformation.selectSignInTab();
+    await this.personalInformation.fillLoginEmail(data.email);
+    await this.personalInformation.fillLoginPassword(data.password);
+  }
 }

@@ -1,8 +1,6 @@
 import { expect } from '@playwright/test';
 import { test } from '../fixtures';
 
-import loginData from '../login-data.json';
-
 test.describe('Cart page feature', () => {
   test.beforeEach(async ({ productsPage }) => {
     await productsPage.goToPage();

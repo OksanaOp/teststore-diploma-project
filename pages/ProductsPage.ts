@@ -2,7 +2,6 @@ import { ProductCardComponent } from '@/components/ProductCardComponent/ProductC
 import BasePage from './BasePage';
 import { QuickViewModal } from '@/components/QuickViewModalComponent/QuickViewModalComponent';
 import { CartModal } from '../components/CartModalComponent/CartModalComponent';
-//import { CartModal } from '@/components/CartModalComponent/CartModalComponent';
 
 const quickViewModalIdPart = 'quickview-modal-';
 
