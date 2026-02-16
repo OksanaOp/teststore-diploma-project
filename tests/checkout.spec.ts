@@ -76,9 +76,6 @@ test.describe('Tests for checkout page', () => {
     await checkoutPage.shippingMethodStep.continueButtonClick();
     // step4
     await expect(checkoutPage.locators.paymentSection).toContainClass('js-current-step');
-    // await expect(checkoutPage.paymentMethodStep.locator.errorMessageLocator).toHaveText(
-    //   'Unfortunately, there is no payment method available.'
-    // );
     await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeDisabled();
     await checkoutPage.paymentMethodStep.selectPaymentMethod('1');
     await checkoutPage.paymentMethodStep.acceptTermsAndConditions();

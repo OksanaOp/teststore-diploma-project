@@ -9,7 +9,7 @@ abstract class BasePage {
     this.controllerPath = controllerPath;
   }
 
-  // path - to use dynamic navigation
+  // path - to use custom navigation (for product page to reach any controller id)
   async goToPage(path?: string) {
     await this.page.goto(path || this.controllerPath);
   }
