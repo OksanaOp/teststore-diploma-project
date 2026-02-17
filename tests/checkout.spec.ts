@@ -82,7 +82,7 @@ test.describe('Tests for checkout page', () => {
     await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeEnabled();
   });
 
-  test('TR0012: existing', async ({ checkoutPage, cartPage }) => {
+  test('TR0012: Checkout with existing user + login', async ({ checkoutPage, cartPage }) => {
     await cartPage.goToPage();
     await cartPage.proceedToCheckout();
 
