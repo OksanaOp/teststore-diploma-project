@@ -1,5 +1,6 @@
-import { BaseComponent } from '../BaseComponent';
-import { CartModalLocators } from './CartModalComponentLocators';
+import { BaseComponent } from '@/components/BaseComponent';
+
+import { CartModalLocators } from './CartModalLocators';
 
 export class CartModal extends BaseComponent {
   locators: CartModalLocators = new CartModalLocators(this.baseLocator);

@@ -1,7 +1,7 @@
 import Filters from '@/components/products/Filters';
+import CartModal from '@/components/cart/CartModal';
 import ProductCard from '@/components/products/ProductCard';
 import QuickViewModal from '@/components/products/QuickViewModal';
-import { CartModal } from '@/components/CartModalComponent/CartModalComponent';
 
 import BasePage from './BasePage';
 import { ProductsPageLocators } from '../locators/ProductsPageLocators';
