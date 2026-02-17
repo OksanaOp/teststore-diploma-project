@@ -35,7 +35,7 @@ test.describe('Tests for checkout page', () => {
     await expect(productsPage.cartModal.locators.cartModalTitle).toBeVisible();
   });
 
-  test('TR0010: Checkout existing user with existing address', async ({
+  test('TR011: Checkout existing user with existing address', async ({
     checkoutPage,
     loginPage,
     cartPage,
@@ -59,7 +59,7 @@ test.describe('Tests for checkout page', () => {
     await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeEnabled();
   });
 
-  test('TR0011: Checkout as a guest', async ({ checkoutPage, cartPage }) => {
+  test('TR012: Checkout as a guest', async ({ checkoutPage, cartPage }) => {
     await cartPage.goToPage();
     await cartPage.proceedToCheckout();
 
@@ -82,7 +82,7 @@ test.describe('Tests for checkout page', () => {
     await expect(checkoutPage.paymentMethodStep.locator.placeOrderButtonLocator).toBeEnabled();
   });
 
-  test('TR0012: Checkout with existing user + login', async ({ checkoutPage, cartPage }) => {
+  test('TR013: Checkout with existing user + login', async ({ checkoutPage, cartPage }) => {
     await cartPage.goToPage();
     await cartPage.proceedToCheckout();
 
