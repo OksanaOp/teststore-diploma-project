@@ -10,7 +10,9 @@ const quickViewModalIdPart = 'quickview-modal-';
 
 export class ProductsPage extends BasePage {
   locators: ProductsPageLocators = new ProductsPageLocators(this.page.locator('[id="wrapper"]'));
-  quickViewModal = new QuickViewModal(this.page.locator(`[id^="${quickViewModalIdPart}"]`));
+  quickViewModal: QuickViewModal = new QuickViewModal(
+    this.page.locator(`[id^="${quickViewModalIdPart}"]`)
+  );
   cartModal = new CartModal(this.page.locator('[class="modal-dialog"]'));
   filters = new Filters(this.page.locator('#search_filters'));
 

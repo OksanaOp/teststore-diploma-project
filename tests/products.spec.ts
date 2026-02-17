@@ -1,6 +1,8 @@
 import { expect } from '@playwright/test';
-import { test } from '../fixtures';
 
+import { productsParams, filterParams } from '@/testParams';
+
+import { test } from '../fixtures';
 import loginData from '../login-data.json';
 
 test.describe('Tests for adding products', () => {
@@ -44,19 +46,8 @@ test.describe('Tests for adding products', () => {
   );
 });
 
-const testParams = [
-  {
-    url: '/index.php?id_category=4&controller=category',
-    productNames: ['Hummingbird printed t-shirt'],
-  },
-  {
-    url: '/index.php?id_category=7&controller=category',
-    productNames: ['Brown bear notebook', 'Mountain fox notebook'],
-  },
-];
-
 test.describe('Test for page by URL:', () => {
-  testParams.forEach(({ url, productNames }, index) => {
+  productsParams.forEach(({ url, productNames }, index) => {
     test(`TR006.0${index + 1}: url ${url}`, async ({ productsPage, headerComponent }) => {
       await productsPage.goToPage(url);
 
@@ -73,28 +64,8 @@ test.describe('Test for page by URL:', () => {
   });
 });
 
-const chckboxPrefix = 'facet_input';
-
-const testFilterParams = [
-  {
-    filterName: 'Composition',
-    checkboxName: 'Ceramic',
-    resultsCount: 4,
-  },
-  {
-    filterName: 'Property',
-    checkboxName: 'Removable cover',
-    resultsCount: 3,
-  },
-  {
-    filterName: 'Brand',
-    checkboxName: 'Studio Design',
-    resultsCount: 7,
-  },
-];
-
 test.describe('Filters testing', () => {
-  testFilterParams.forEach(({ filterName, checkboxName, resultsCount }, index) => {
+  filterParams.forEach(({ filterName, checkboxName, resultsCount }, index) => {
     test(`TR007.0${index + 1}Filter: ${filterName} -> checkbox ${checkboxName}`, async ({
       productsPage,
     }) => {
