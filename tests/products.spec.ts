@@ -46,9 +46,12 @@ test.describe('Tests for adding products', () => {
   );
 });
 
-test.describe('Test for page by URL:', () => {
+test.describe('Test multiple packages adding via different URL:', () => {
   productsParams.forEach(({ url, productNames }, index) => {
-    test(`TR006.0${index + 1}: url ${url}`, async ({ productsPage, headerComponent }) => {
+    test(`TR006.0${index + 1}: add multiple products from different pages ${url}`, async ({
+      productsPage,
+      headerComponent,
+    }) => {
       await productsPage.goToPage(url);
 
       for (let j = 0; j < productNames.length; j++) {
@@ -66,7 +69,7 @@ test.describe('Test for page by URL:', () => {
 
 test.describe('Filters testing', () => {
   filterParams.forEach(({ filterName, checkboxName, resultsCount }, index) => {
-    test(`TR007.0${index + 1}Filter: ${filterName} -> checkbox ${checkboxName}`, async ({
+    test(`TR007.0${index + 1} Testing ${filterName} Filter by clicking on checkbox ${checkboxName}`, async ({
       productsPage,
     }) => {
       await productsPage.goToPage('/index.php?id_category=8&controller=category');
